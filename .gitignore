@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+
+# uv
+.python-version
+uv.lock
+
+# Model/server artifacts
+model_server/__pycache__/
+
+# Images to ignore for now
+*.jpg
+*.jpeg
+*.JPG
+*.JPEG

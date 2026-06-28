@@ -14,7 +14,8 @@ def preprocess_image(image_path, target_size=(128, 128)):
   img_array = np.expand_dims(img_array, axis=0) # Add batch dimension
   return img_array
 
-loaded_model = tf.keras.models.load_model('cnn.keras')
+model_name = 'model_v1'
+loaded_model = tf.keras.models.load_model('models/'+model_name+'.keras')
 
 app=fastapi.FastAPI()
 
@@ -35,6 +36,6 @@ def predict(image_path: str):
         predicted_class_index = np.argmax(probabilities)
         predicted_class_name = classes[predicted_class_index]
 
-        return {"predicted_class": predicted_class_name, "confidence": float(probabilities[predicted_class_index])}
+        return {"predicted_class": predicted_class_name, "confidence": float(probabilities[predicted_class_index]), "model_name": model_name}
     except Exception as e:
         return {"error": str(e)}
